@@ -5,6 +5,7 @@ import requests
 from urllib.parse import urljoin
 import bs4
 import pymongo
+import time
 
 MONTHS = {
     "янв": 1,
@@ -21,6 +22,10 @@ MONTHS = {
     "ноя": 11,
     "дек": 12,
 }
+
+class ParseError(Exception):
+    def __init__(self, txt):
+        self.txt = txt
 
 class MagnitParser:
     def __init__(self, start_url, data_base):
